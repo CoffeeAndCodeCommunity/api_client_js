@@ -10,13 +10,18 @@
 <body>
 
   <h1>Contact</h1>
+  <div id="contacts">
 
-  {{#each contact in contacts}}
-  <h2>{{contact.attributes.name}}</h2>
-  {{/each}}
-</div>
+  </div>
 
 </body>
+
+<script id="entry-template" type="text/x-handlebars-template">
+  {{#each contacts as |contact|}}
+    <h2>{{contact.attributes.name}}</h2>
+    <img src="https://avatars.io/twitter/{{contact.attributes.twitter}}"/>
+  {{/each}}
+</script>
 
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
@@ -36,8 +41,15 @@
     })
   }
 
-  function renderContacts(contacts){
-    
+  function renderContacts(contacts) {
+    var context = {contacts: contacts.data}
+    var source   = document.getElementById("entry-template").innerHTML;
+    var template = Handlebars.compile(source);
+    var html = template(context)
+    var element = document.getElementById('contacts')
+    element.innerHTML += html
+
+
   }
 </script>
 
