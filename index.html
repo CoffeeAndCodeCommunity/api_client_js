@@ -16,6 +16,7 @@
     loadContacts('https://ca-address-book.herokuapp.com/api/contacts')
       .then(function(response) {
         console.log(response);
+        renderContacts(response)
       })
   })
 
@@ -26,6 +27,10 @@
           resolve(response.json())
         })
     })
+  }
+
+  function renderContacts(contacts){
+    
   }
 </script>
 
