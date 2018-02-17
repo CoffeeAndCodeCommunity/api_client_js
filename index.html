@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Contact API Client</title>
+</head>
+
+<body>
+
+</body>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    loadContacts('https://ca-address-book.herokuapp.com/api/contacts')
+      .then(function(response) {
+        console.log(response);
+      })
+  })
+
+  function loadContacts(url) {
+    return new Promise(function(resolve) {
+      fetch(url)
+        .then(function(response) {
+          resolve(response.json())
+        })
+    })
+  }
+</script>
+
+</html>
