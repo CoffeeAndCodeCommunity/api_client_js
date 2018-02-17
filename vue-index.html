@@ -21,20 +21,30 @@
 </body>
 
 <script type="text/javascript">
+  //we instantiate a new Vue app
   var app = new Vue({
+    //we tell our app to live in the div with the id #app
     el: '#app',
+
+    //here we set up our variables (they always live in the data object)
     data: {
+        //we'll be looping through our contacts, so we set it to an array
         contacts: []
     },
 
-    created: function() {
+    //when the Vue app is created, we call our getContacts() method
+    // created() {} is just a shorthand syntax for created: function () {}
+    created() {
       this.getContacts()
     },
 
+    //here we set up our methods (they always live in the methods object)
     methods: {
+      //we add a method that gets data from the API
       getContacts() {
         this.$http.get('https://ca-address-book.herokuapp.com/api/contacts')
-          .then((response) => {
+          .then(response => {
+            //we set our contacts array to the api response array
             this.contacts = response.data.data
           });
       }
